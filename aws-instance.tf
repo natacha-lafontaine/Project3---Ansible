@@ -4,6 +4,7 @@ resource "aws_instance" "project3" {
   associate_public_ip_address = true
   key_name = "terraform-key"
   vpc_security_group_ids = [aws_security_group.webSG.id]
+  #user_data = "${file("setup.sh")}"
 
   tags = {    
     Name = "project3"
@@ -18,6 +19,18 @@ resource "aws_instance" "project3" {
   }
 
   provisioner "remote-exec" {
-    inline = ["echo Connected"]
+    inline = ["echo Starting Setup"]
+  }
+
+  provisioner "file" {
+    source = "./setup.sh"
+    destination = "/home/ubuntu/setup.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ubuntu/setup.sh",
+      "/home/ubuntu/setup.sh",
+    ]
   }
 }
