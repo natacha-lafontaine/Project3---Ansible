@@ -18,7 +18,11 @@ resource "aws_instance" "tomcat-web" {
   }
 
   provisioner "remote-exec" {
-    inline = ["echo Starting Setup"]
+    inline = [
+      "echo Installing Java",
+      "sudo apt-get update",
+      "sudo apt-get install default-jdk -y",
+    ]
   }
 
   provisioner "file" {
