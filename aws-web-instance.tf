@@ -1,4 +1,4 @@
-resource "aws_instance" "ansible-jenkins" {
+resource "aws_instance" "tomcat-web" {
   ami = "ami-052efd3df9dad4825"
   instance_type = "t2.micro"
   associate_public_ip_address = true
@@ -6,7 +6,7 @@ resource "aws_instance" "ansible-jenkins" {
   vpc_security_group_ids = [aws_security_group.webSG.id]
 
   tags = {    
-    Name = "ansible-jenkins"
+    Name = "tomcat-web"
   } 
 
   connection {
@@ -22,14 +22,14 @@ resource "aws_instance" "ansible-jenkins" {
   }
 
   provisioner "file" {
-    source = "./setup-ansible-jenkins.sh"
-    destination = "/home/ubuntu/setup-ansible-jenkins.sh"
+    source = "./setup-tomcat.sh"
+    destination = "/home/ubuntu/setup-tomcat.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/setup-ansible-jenkins.sh",
-      "/home/ubuntu/setup-ansible-jenkins.sh",
+      "chmod +x /home/ubuntu/setup-tomcat.sh",
+      "/home/ubuntu/setup-tomcat.sh",
     ]
   }
 }
