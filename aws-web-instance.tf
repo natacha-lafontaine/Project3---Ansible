@@ -16,8 +16,11 @@ resource "aws_instance" "tomcat-web" {
     host = self.public_ip
     timeout = "4m"
   }
-
-  provisioner "remote-exec" {
+}
+  
+  
+  
+  /*provisioner "remote-exec" {
     inline = [
       "echo Installing Java",
       "sudo apt-get update",
@@ -35,5 +38,4 @@ resource "aws_instance" "tomcat-web" {
       "chmod +x /home/ubuntu/setup-tomcat.sh",
       "/home/ubuntu/setup-tomcat.sh",
     ]
-  }
-}
+  }*/
