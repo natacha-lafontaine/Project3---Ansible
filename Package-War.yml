@@ -5,7 +5,10 @@
   
   tasks:
     - name: check out the repository
-      git: repo=https://github.com/natacha-lafontaine/Project3---Ansible.git accept_hostkey=yes
+      git: 
+        repo: https://github.com/natacha-lafontaine/Project3---Ansible.git 
+        dest: lookup('env','WORKSPACE')
+        accept_hostkey: yes
 
     - name: maven clean package
       command: mvn clean package
