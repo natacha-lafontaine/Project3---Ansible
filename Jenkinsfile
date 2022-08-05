@@ -4,32 +4,17 @@ pipeline {
     stages {
         stage('Tomcat Installation') {
             steps {
-                ansiblePlaybook('./Setup-Tomcat.yml') {
-					ansibleName('ansible_2.13.2')
-					inventoryPath('/etc/ansible/hosts')
-					credentialsId('/home/ubuntu/.ssh/id_rsa')
-					colorizedOutput(true)
-				}
+                ansiblePlaybook colorized: true, credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Setup-Tomcat.yml'
             }
         }
         stage('Compile War') {
             steps {
-                ansiblePlaybook('./Package-War.yml') {
-					ansibleName('ansible_2.13.2')
-					inventoryPath('/etc/ansible/hosts')
-					credentialsId('/home/ubuntu/.ssh/id_rsa')
-					colorizedOutput(true)
-				}
+                ansiblePlaybook colorized: true, credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Package-War.yml'
             }
         }
         stage('Deploy War') {
             steps {
-                ansiblePlaybook('./Deploy-War.yml') {
-					ansibleName('ansible_2.13.2')
-					inventoryPath('/etc/ansible/hosts')
-					credentialsId('/home/ubuntu/.ssh/id_rsa')
-					colorizedOutput(true)
-				}
+                ansiblePlaybook colorized: true, credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Deploy-War.yml'
             }
         }
     }
