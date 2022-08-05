@@ -4,6 +4,14 @@
   become_user: root
   
   tasks:
+    - name: Create a workspace Directory
+      file:
+        path: /tmp/workspace
+        owner: ubuntu
+        group: ubuntu
+        mode: 777
+        recurse: yes 
+
     - name: check out the repository
       git: 
         repo: https://github.com/natacha-lafontaine/Project3---Ansible.git 
@@ -12,5 +20,3 @@
 
     - name: maven clean package
       command: mvn -f /tmp/workspace/pom.xml clean package
-      become: true
-      become_user: root
