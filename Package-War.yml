@@ -11,4 +11,6 @@
         accept_hostkey: yes
 
     - name: maven clean package
-      shell: nohup mvn -f /tmp/workspace/pom.xml clean package
+      shell: mvn clean package
+      args:
+        chdir: /tmp/workspace
