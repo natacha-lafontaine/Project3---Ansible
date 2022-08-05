@@ -10,6 +10,7 @@
         dest: "/tmp/workspace"
         accept_hostkey: yes
 
+#The following section hangs when ran through Jenkins, couldn't find why
     - name: maven clean package
       shell: mvn clean package
       args:

@@ -9,8 +9,10 @@ pipeline {
         }
         stage('Compile War') {
             steps {
-                ansiblePlaybook colorized: true, credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Package-War.yml'
+                git 'https://github.com/natacha-lafontaine/Project3---Ansible.git'
+
+                sh "mvn clean package"
             }
-        }      
+        }     
     }
 }
