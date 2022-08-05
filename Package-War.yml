@@ -3,7 +3,7 @@
   become: true
   become_method: sudo
   vars:
-    workspace: "{{ lookup('env','WORKSPACE') }}"
+    workspace: "/tmp/workspace"
   
   tasks:
     - name: check out the repository
