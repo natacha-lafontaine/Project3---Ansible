@@ -1,7 +1,7 @@
 - name: Git pull maven compile
   hosts: jenkins
   become: true
-  become_method: sudo
+  become_user: root
   
   tasks:
     - name: check out the repository
@@ -10,8 +10,7 @@
         dest: "/tmp/workspace"
         accept_hostkey: yes
 
-#The following section hangs when ran through Jenkins, couldn't find why
     - name: maven clean package
-      shell: mvn clean package
-      args:
-        chdir: /tmp/workspace
+      command: mvn -f /tmp/workspace/pom.xml clean package
+      become: true
+      become_user: root
