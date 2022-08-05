@@ -1,0 +1,25 @@
+- name: Deploy to Tomcat Server
+  hosts: web
+  become: true
+  become_method: sudo
+  vars:
+     remote_warfile: /root/workspace/myproject/target/Projetc3-Ansible-1.0.0.war
+     remote_webapps: /usr/share/tomcat/webapps/
+
+  tasks:
+    - name: tomcat stop
+      service: name=tomcat state=stopped
+
+    - name: delete war directories in tomcat webapps
+      file: path=/usr/share/tomcat/webapps/Projetc3-Ansible-1.0.0.war state=absent
+
+    - name: delete war file in tomcat webapps
+      file: path=/usr/share/tomcat/webapps/Projetc3-Ansible-1.0.0 state=absent
+
+    - name: copy war file
+      command: cp {{remote_warfile}} {{remote_webapps}}
+      notify: start tomcat
+
+  handlers:
+    - name: start tomcat
+      service: name=tomcat state=started

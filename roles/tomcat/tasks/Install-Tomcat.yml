@@ -25,20 +25,12 @@
 - name: Configure Tomcat server
   template: src=server.xml dest=/usr/share/tomcat/conf/
 
-  
-- name: Create  sample directory
+- name: Create directory
   file: 
-    path: "/opt/apache-tomcat-9.0.65/webapps/samples"
+    path: "/opt/apache-tomcat-9.0.65/webapps"
     state: directory
     mode: 0777
   become: true
-  
-
-- name: copy war file
-  copy: src=./target/LoginWebApp-1.war dest=/opt/apache-tomcat-9.0.65/webapps/
-
-
-  notify: restart tomcat
 
 - name: Install Tomcat init script
   copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755

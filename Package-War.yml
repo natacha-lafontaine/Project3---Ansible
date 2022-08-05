@@ -1,0 +1,11 @@
+- name: Git pull maven compile
+  hosts: jenkins
+  become: true
+  become_method: sudo
+  
+  tasks:
+    - name: check out the repository
+      git: repo=https://github.com/natacha-lafontaine/Project3---Ansible.git dest=/root/workspace/Projetc3-Ansible-1.0.0/ accept_hostkey=yes
+
+    - name: maven clean package
+      command: mvn -f /root/workspace/myproject/pom.xml clean package
