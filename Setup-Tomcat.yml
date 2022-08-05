@@ -47,7 +47,4 @@
         state: directory 
  
     - name: Start and Enable Tomcat on sever
-      service:
-        name: tomcat
-        state: started
-        enabled: yes
+      shell: /opt/apache-tomcat-9.0.65/bin/startup.sh
