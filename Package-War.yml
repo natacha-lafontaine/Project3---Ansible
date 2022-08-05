@@ -9,8 +9,8 @@
     - name: check out the repository
       git: 
         repo: https://github.com/natacha-lafontaine/Project3---Ansible.git 
-        dest: {{workspace:}}
+        dest: {{workspace}}
         accept_hostkey: yes
 
     - name: maven clean package
-      command: mvn -f {{workspace:}} clean package
+      command: mvn -f {{workspace}} clean package
