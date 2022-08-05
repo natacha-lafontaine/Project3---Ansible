@@ -12,3 +12,5 @@
 
     - name: maven clean package
       command: mvn clean package
+      args:
+        chdir: lookup('env','WORKSPACE')
