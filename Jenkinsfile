@@ -1,13 +1,11 @@
 pipeline {
     agent any
 
-    tools {
-        ansible "ansible_2.13.2"
-    }
     stages {
         stage('Tomcat Installation') {
             steps {
                 ansiblePlaybook('Setup-Tomcat.yml') {
+					ansibleName('ansible_2.13.2')
 					inventoryPath('/etc/ansible/hosts')
 					credentialsId('/home/ubuntu/.ssh/id_rsa')
 					colorizedOutput(true)
@@ -17,6 +15,7 @@ pipeline {
         stage('Compile War') {
             steps {
                 ansiblePlaybook('Package-War.yml') {
+					ansibleName('ansible_2.13.2')
 					inventoryPath('/etc/ansible/hosts')
 					credentialsId('/home/ubuntu/.ssh/id_rsa')
 					colorizedOutput(true)
@@ -26,6 +25,7 @@ pipeline {
         stage('Deploy War') {
             steps {
                 ansiblePlaybook('Deploy-War.yml') {
+					ansibleName('ansible_2.13.2')
 					inventoryPath('/etc/ansible/hosts')
 					credentialsId('/home/ubuntu/.ssh/id_rsa')
 					colorizedOutput(true)
