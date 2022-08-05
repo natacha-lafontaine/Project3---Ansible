@@ -2,15 +2,15 @@
   hosts: jenkins
   become: true
   become_method: sudo
+  vars:
+    workspace: lookup('env','WORKSPACE')
   
   tasks:
     - name: check out the repository
       git: 
         repo: https://github.com/natacha-lafontaine/Project3---Ansible.git 
-        dest: lookup('env','WORKSPACE')
+        dest: {{workspace:}}
         accept_hostkey: yes
 
     - name: maven clean package
-      command: mvn clean package
-      args:
-        chdir: lookup('env','WORKSPACE')
+      command: mvn -f {{workspace:}} clean package
