@@ -1,7 +1,7 @@
 resource "aws_security_group" "webSG" {
   name        = "webSG"
   description = "Allow  inbound traffic"
-  vpc_id = "vpc-05689b8084df9d887"
+  vpc_id = "vpc-0d24d62af227b52da"
 
   ingress {
     description = "SSH"
