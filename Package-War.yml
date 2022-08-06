@@ -5,7 +5,12 @@
   become_user: root
   
   tasks:
-    - name: Create a workspace Directory
+    - name: delete workspace directory
+      file: 
+        path: /tmp/workspace 
+        state: absent
+
+    - name: Create workspace Directory
       file:
         path: /tmp/workspace
         owner: ubuntu
