@@ -11,6 +11,11 @@ pipeline {
             steps {
                 ansiblePlaybook credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Package-War.yml'
             }
-        }     
+        }
+        stage('Deploy War') {
+            steps {
+                ansiblePlaybook credentialsId: 'Tomcat', installation: 'ansible_2.13.2', inventory: '/etc/ansible/hosts', playbook: './Deploy-War.yml'
+            }
+        }   
     }
 }
