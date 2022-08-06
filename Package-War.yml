@@ -9,7 +9,7 @@
         path: /tmp/workspace
         owner: ubuntu
         group: ubuntu
-        mode: 777
+        mode: 0777
         recurse: yes 
 
     - name: Make sure the new folder is trusted by Git
