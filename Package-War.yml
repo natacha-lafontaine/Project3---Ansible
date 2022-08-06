@@ -12,6 +12,9 @@
         mode: 777
         recurse: yes 
 
+    - name: Make sure the new folder is trusted by Git
+      command: git config --global --add safe.directory /tmp/workspace
+
     - name: check out the repository
       git: 
         repo: https://github.com/natacha-lafontaine/Project3---Ansible.git 
