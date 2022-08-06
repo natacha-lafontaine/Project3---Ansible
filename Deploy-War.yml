@@ -9,7 +9,7 @@
 
   tasks:
     - name: tomcat stop
-      service: name=tomcat state=stopped
+      shell: /opt/apache-tomcat-9.0.65/bin/shutdown.sh
 
     - name: delete war directories in tomcat webapps
       file: path=/usr/share/tomcat/webapps/WebApp.war state=absent
@@ -23,4 +23,4 @@
 
   handlers:
     - name: start tomcat
-      service: name=tomcat state=started
+      shell: /opt/apache-tomcat-9.0.65/bin/startup.sh
