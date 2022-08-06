@@ -4,7 +4,7 @@
   become: true
   become_method: sudo
   vars:
-     remote_warfile: /tmp/workspace/target/WebApp.war
+     local_warfile: /tmp/workspace/target/WebApp.war
      remote_webapps: /opt/apache-tomcat-9.0.65/webapps/WebApp.war
 
   tasks:
@@ -18,7 +18,10 @@
       file: path=/opt/apache-tomcat-9.0.65/webapps/WebApp state=absent
 
     - name: copy war file
-      command: cp {{ remote_warfile }} {{ remote_webapps }}
+      copy:
+        src: "{{ local_warfile }}"
+        dest: "{{ remote_webapps }}"
+        mode: 0777
       notify: start tomcat
 
   handlers:
