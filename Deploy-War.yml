@@ -5,7 +5,7 @@
   become_method: sudo
   vars:
      remote_warfile: /tmp/workspace/target/WebApp.war
-     remote_webapps: /opt/apache-tomcat-9.0.65/webapps/
+     remote_webapps: /opt/apache-tomcat-9.0.65/webapps/WebApp.war
 
   tasks:
     - name: tomcat stop
