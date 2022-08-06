@@ -1,3 +1,4 @@
+---
 - name: Deploy to Tomcat Server
   hosts: web
   become: true

@@ -1,3 +1,4 @@
+---
 - name: Git pull maven compile
   hosts: jenkins
   become: true
