@@ -27,7 +27,7 @@
         path: /opt/apache-tomcat-9.0.65
         owner: tomcat
         group: tomcat
-        mode: 755
+        mode: 0755
         recurse: yes
  
     - name: download & unarchive tomcat
